@@ -4,8 +4,34 @@ FORMAT: 1A
 
 Crypto offers a secure channel so applications can communicate safely between each other.
 
+## Data Structures
 
-## Health [/health]
+### `Data no-CC` (object)
++ data: Clear or cipher data (string)
++ tagSize: 16 (number)
++ key: 2034F6E32958647FDFF75D265B455EBF40C80E6D597092B3A802B3E5863F878C (string)
++ iv: AD0ACC568C88C116D57B273D98FB92C0 (string)
+
+### Data CC (object)
++ sessionId: 7ae76bf2bb4c4dc3cdffda3c5e37c9e4 (string)
++ data: Clear or cipher data (string)
+
+### Crypto Reply (object)
++ data: Cipher or clear data (string)
++ result: SUCCESS (string)
+
+### CC Registry (object)
++ provider: (string)
++ transactionId: (string)
++ lifespan: (number)
++ ivServerToComponent: (string)
++ keyServerToComponent: (string)
++ sessionId: (string)
++ keyComponentToServer: (string)
++ ivComponentToServer: (string)
++ tagLen: (number)
+
+# Group Health
 
 Health can obtain Crypto status information
 
@@ -16,34 +42,7 @@ Health can obtain Crypto status information
 + Response 200
 
 
-## Crypto functions [/crypto]
-
-### Data Structures
-
-#### Data no-CC (object)
-+ data: Clear or cipher data (string)
-+ tagSize: 16 (number)
-+ key: 2034F6E32958647FDFF75D265B455EBF40C80E6D597092B3A802B3E5863F878C (string)
-+ iv: AD0ACC568C88C116D57B273D98FB92C0 (string)
-
-#### Data CC (object)
-+ sessionId: 7ae76bf2bb4c4dc3cdffda3c5e37c9e4 (string)
-+ data: Clear or cipher data (string)
-
-#### Crypto Reply (object)
-+ data: Cipher or clear data (string)
-+ result: SUCCESS (string)
-
-#### CC Registry (object)
-+ provider: (string)
-+ transactionId: (string)
-+ lifespan: (number)
-+ ivServerToComponent: (string)
-+ keyServerToComponent: (string)
-+ sessionId: (string)
-+ keyComponentToServer: (string)
-+ ivComponentToServer: (string)
-+ tagLen: (number)
+# Group Crypto functions
 
 ### Decrypt without using CC [/crypto/decrypt]
 
@@ -92,9 +91,10 @@ Health can obtain Crypto status information
     + Attributes (CC Registry)
 
 + Response 200 (aplication/json)
-    {
-        "result" : "SUCCESS"
-    }
+
+        {
+            "result" : "SUCCESS"
+        }
 
 
 ### Unregister existing CC [/crypto/unregisterCC]
@@ -104,6 +104,7 @@ Health can obtain Crypto status information
 + Attributes (CC Registry)
 
 + Response 200 (aplication/json)
-    {
-        "result" : "SUCCESS"
-    }
+
+        {
+            "result" : "SUCCESS"
+        }
