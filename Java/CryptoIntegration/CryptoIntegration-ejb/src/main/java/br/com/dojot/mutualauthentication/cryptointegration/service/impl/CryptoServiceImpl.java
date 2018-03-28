@@ -105,8 +105,6 @@ public class CryptoServiceImpl implements CryptoService {
 				byte[] encrypted = cc.encrypt(null, CryptoUtil.HexStrToByteArray(data));
 				reply.put(Constants.CIPHERTEXT, CryptoUtil.ByteArrayToHexStr(encrypted));
 				reply.put(Constants.OPERATION_RESULT, Constants.SUCCESS);
-				cache.setIvServerToComponent(cc.getLocalIV());
-				cryptoChannelService.save(sessionId, cache);
 			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchProviderException | NoSuchPaddingException
 					| InvalidAlgorithmParameterException | BadPaddingException | IllegalBlockSizeException e) {
 				reply.put(Constants.OPERATION_RESULT, Constants.FAILURE);
@@ -133,8 +131,6 @@ public class CryptoServiceImpl implements CryptoService {
 				byte[] decrypted = cc.decrypt(null, CryptoUtil.HexStrToByteArray(data));
 				reply.put(Constants.PLAINTEXT, CryptoUtil.ByteArrayToHexStr(decrypted));
 				reply.put(Constants.OPERATION_RESULT, Constants.SUCCESS);
-				cache.setIvComponentToServer(cc.getExternalIV());
-				cryptoChannelService.save(sessionId, cache);
 			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchProviderException | NoSuchPaddingException
 					| InvalidAlgorithmParameterException | BadPaddingException | IllegalBlockSizeException e) {
 				reply.put(Constants.OPERATION_RESULT, Constants.FAILURE);
